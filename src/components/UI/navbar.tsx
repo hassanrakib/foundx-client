@@ -11,6 +11,9 @@ import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { Avatar } from "@nextui-org/avatar";
+
+import NavbarDropdown from "./NavbarDropdown";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/UI/theme-switch";
@@ -32,7 +35,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
                 color="foreground"
                 href={item.href}
@@ -50,6 +53,9 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
+        </NavbarItem>
+        <NavbarItem className="hidden sm:flex gap-2">
+          <NavbarDropdown />
         </NavbarItem>
       </NavbarContent>
 
