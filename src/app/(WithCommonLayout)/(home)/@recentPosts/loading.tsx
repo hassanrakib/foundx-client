@@ -2,13 +2,9 @@ import Link from "next/link";
 import { Button } from "@nextui-org/button";
 
 import Container from "@/components/UI/Container";
-import { getRecentPosts } from "@/services/RecentPosts";
+import CardSkeleton from "@/components/UI/CardSkeleton";
 
-const RecentPosts = async () => {
-  const { data: posts } = await getRecentPosts();
-
-  throw new Error("error by rakib!");
-
+const RecentPostsLoading = async () => {
   return (
     <Container>
       <div className="section-title my-8">
@@ -18,8 +14,8 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
-        {posts.map((item) => (
-          <p>{item.title}</p>
+        {[...Array(3)].map(() => (
+          <CardSkeleton key={Math.random()} />
         ))}
       </div>
       <div className="flex justify-center">
@@ -31,4 +27,4 @@ const RecentPosts = async () => {
   );
 };
 
-export default RecentPosts;
+export default RecentPostsLoading;
