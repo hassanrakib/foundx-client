@@ -27,7 +27,8 @@
     }
   },
   "rules": {
-    "no-console": "warn",
+    "eslint-plugin-import/order": "off",
+    "no-console": "off",
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
