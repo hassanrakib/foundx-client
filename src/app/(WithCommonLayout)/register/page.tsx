@@ -7,15 +7,27 @@ import FXInput from "@/components/form/FXInput";
 
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { registerUser } from "@/services/AuthService";
+import { useMutation } from "@tanstack/react-query";
+import { useUserRegistration } from "@/hooks/auth.hook";
 
 /* eslint-disable react/jsx-sort-props */
 const Register = () => {
+  const {
+    mutate: handleUserRegistration,
+    data,
+    isPending,
+    isSuccess,
+    isError,
+  } = useUserRegistration();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    registerUser({
+    const newUser = {
       ...data,
       profilePhoto:
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-    });
+    };
+
+    handleUserRegistration(newUser);
   };
 
   return (
