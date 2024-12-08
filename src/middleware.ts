@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
+import { getCurrentUser } from "./services/AuthService";
 
 const AuthRoutes = ["/login", "/register"];
 
@@ -12,16 +13,10 @@ const roleBasedRoutes = {
 };
 
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // const user = {
-  //   name: "John",
-  //   token: "habijabitoken",
-  //   role: "USER",
-  // };
-
-  const user = null;
+  const user = await getCurrentUser();
 
   //   no user
   if (!user) {
@@ -31,7 +26,9 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
     } else {
       // redirect user to login not granting access to other matched routes from config
-      return NextResponse.redirect(new URL("/login", request.url));
+      return NextResponse.redirect(
+        new URL(`/login?redirect=${pathname}`, request.url),
+      );
     }
   }
 
@@ -49,5 +46,5 @@ export function middleware(request: NextRequest) {
 // we are going to take decission in the middleware function based on these paths
 // as only for these paths middleware will be called
 export const config = {
-  matcher: ["/profile", "/admin", "/login", "/register"],
+  matcher: ["/profile", "/profile/:page*", "/admin", "/login", "/register"],
 };
