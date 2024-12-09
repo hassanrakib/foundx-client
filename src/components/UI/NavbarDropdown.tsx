@@ -1,5 +1,6 @@
 "use client";
 
+import { protectedRoutes } from "@/constant";
 import { useUser } from "@/contexts/user.provider";
 import { logout } from "@/services/AuthService";
 import { Avatar } from "@nextui-org/avatar";
@@ -9,10 +10,11 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/dropdown";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NavbarDropdown = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const { setIsLoading: setUserProviderLoading, user } = useUser();
 
@@ -23,6 +25,11 @@ const NavbarDropdown = () => {
   const handleUserLogout = () => {
     logout();
     setUserProviderLoading(true);
+
+    // redirect user to home page
+    if (protectedRoutes.some((route) => pathname.match(route))) {
+      router.push("/");
+    }
   };
 
   return (
