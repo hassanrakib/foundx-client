@@ -1,7 +1,7 @@
-import { IInput } from "@/types";
-
 import { DatePicker } from "@nextui-org/date-picker";
 import { Controller } from "react-hook-form";
+
+import { IInput } from "@/types";
 
 interface FXDatePickerProps extends IInput {}
 

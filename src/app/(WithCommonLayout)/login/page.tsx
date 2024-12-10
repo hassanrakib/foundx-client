@@ -1,18 +1,16 @@
 "use client";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 import FXForm from "@/components/form/FXForm";
 import FXInput from "@/components/form/FXInput";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import { loginValidationSchema } from "@/schemas/login.schema";
-import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useUserLogin } from "@/hooks/auth.hook";
 import Loading from "@/components/UI/Loading";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import { useUser } from "@/contexts/user.provider";
 
 /* eslint-disable react/jsx-sort-props */

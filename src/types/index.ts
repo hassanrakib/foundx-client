@@ -51,6 +51,7 @@ export interface IInput {
   size?: "md" | "sm" | "lg";
   required?: boolean;
   type?: string;
-  label: string;
+  label?: string;
   name: string;
+  disabled?: boolean;
 }

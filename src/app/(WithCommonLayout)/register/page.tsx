@@ -1,13 +1,10 @@
 "use client";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 import FXForm from "@/components/form/FXForm";
 import FXInput from "@/components/form/FXInput";
-
-import { FieldValues, SubmitHandler } from "react-hook-form";
-import { registerUser } from "@/services/AuthService";
-import { useMutation } from "@tanstack/react-query";
 import { useUserRegistration } from "@/hooks/auth.hook";
 
 /* eslint-disable react/jsx-sort-props */

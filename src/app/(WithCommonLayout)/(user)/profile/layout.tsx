@@ -1,6 +1,7 @@
+import React from "react";
+
 import Container from "@/components/UI/Container";
 import Sidebar from "@/components/UI/Sidebar";
-import React from "react";
 
 const UserLayout = ({ children }: { children: React.ReactNode }) => {
   return (

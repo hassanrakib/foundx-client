@@ -1,8 +1,5 @@
 "use client";
 
-import { protectedRoutes } from "@/constant";
-import { useUser } from "@/contexts/user.provider";
-import { logout } from "@/services/AuthService";
 import { Avatar } from "@nextui-org/avatar";
 import {
   Dropdown,
@@ -11,6 +8,10 @@ import {
   DropdownTrigger,
 } from "@nextui-org/dropdown";
 import { usePathname, useRouter } from "next/navigation";
+
+import { protectedRoutes } from "@/constant";
+import { useUser } from "@/contexts/user.provider";
+import { logout } from "@/services/AuthService";
 
 const NavbarDropdown = () => {
   const router = useRouter();
@@ -50,9 +51,9 @@ const NavbarDropdown = () => {
           Claim Requests
         </DropdownItem>
         <DropdownItem
-          onClick={() => handleUserLogout()}
           className="text-danger"
           color="danger"
+          onClick={() => handleUserLogout()}
         >
           Logout
         </DropdownItem>
