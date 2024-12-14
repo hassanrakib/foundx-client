@@ -62,7 +62,7 @@ const Post = ({ post }: PostProps) => {
           <ImageGallery images={images} />
         </div>
         <div className="mt-4 flex gap-5">
-          <ClaimRequestModal />
+          <ClaimRequestModal id={_id} questions={questions} />
         </div>
       </div>
     </div>
