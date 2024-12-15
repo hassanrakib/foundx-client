@@ -1,3 +1,5 @@
+"use client";
+
 import { IPost, User } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
@@ -6,6 +8,8 @@ import { Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
 import ImageGallery from "./ImageGallery";
 import ClaimRequestModal from "@/components/modals/ClaimRequestModal";
+import { useUser } from "@/contexts/user.provider";
+import AuthenticationModal from "@/components/modals/AuthenticationModal";
 
 interface PostProps {
   post: IPost;
@@ -25,6 +29,8 @@ const Post = ({ post }: PostProps) => {
   } = post || {};
 
   const { name, email, profilePhoto } = (user as User) || {};
+
+  const { user: loggedInUser } = useUser();
 
   return (
     <div className="mb-2 rounded-md bg-default-100 p-4">
@@ -61,9 +67,15 @@ const Post = ({ post }: PostProps) => {
         <div>
           <ImageGallery images={images} />
         </div>
-        <div className="mt-4 flex gap-5">
-          <ClaimRequestModal id={_id} questions={questions} />
-        </div>
+        {email !== loggedInUser?.email ? (
+          <div className="mt-4 flex gap-5">
+            {loggedInUser?.email ? (
+              <ClaimRequestModal id={_id} questions={questions} />
+            ) : (
+              <AuthenticationModal id={_id} />
+            )}
+          </div>
+        ) : null}
       </div>
     </div>
   );
