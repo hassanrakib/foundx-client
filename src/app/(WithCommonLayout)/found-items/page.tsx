@@ -3,8 +3,13 @@ import Post from "@/components/UI/Post";
 import axiosInstance from "@/lib/AxiosInstance";
 import { IPost } from "@/types";
 
-const FoundItems = async () => {
-  const { data } = await axiosInstance.get("/items");
+const FoundItems = async ({ searchParams }: { searchParams: any }) => {
+  const params = new URLSearchParams(searchParams);
+  const { data } = await axiosInstance.get("/items", {
+    params: {
+      searchTerm: params.get("query"),
+    },
+  });
 
   return (
     <Container>

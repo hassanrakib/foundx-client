@@ -55,3 +55,10 @@ export interface IInput {
   name: string;
   disabled?: boolean;
 }
+
+export interface ISearchResult {
+  title: string;
+  description: string;
+  images: string;
+  _id: string;
+}
